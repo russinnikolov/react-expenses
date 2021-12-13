@@ -7,15 +7,19 @@ function saveSession(userInfo) {
 	sessionStorage.setItem('username', userInfo.username);
 }
 
-function login(email, password, callback) {
+function login(username, password, callback) {
 		let userData = {
-			email: email,
+			username: username,
 			password: password
-		}
-		requester.get('user', 'login', 'basic', userData)
-			.then((response) => {
-					saveSession(response);
-					callback(true);
+		};
+
+		requester.post('user', 'login', 'basic', userData)
+			.then(function(response) {
+				saveSession(response);
+				callback(true);
+			})
+			.catch(() => {
+				callback(false);
 			});
 }
 
@@ -24,11 +28,15 @@ function register(email, username, password, callback) {
 		email: email,
 		username: username,
 		password: password
-	}
-	requester.post('user', '', 'basic', userData)
+	};
+
+	requester.post('user', ' ', 'basic', userData)
 		.then((response) => {
 			saveSession(response);
 			callback(true);
+		})
+		.catch(() => {
+			callback(false);
 		});
 }
 

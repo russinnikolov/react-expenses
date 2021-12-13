@@ -7,7 +7,7 @@ export default class LoginPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			email: '',
+			username: '',
 			password: ''
 		};
 
@@ -17,13 +17,15 @@ export default class LoginPage extends Component {
 	}
 
 	onChangeEvent(e) {
-
+		e.preventDefault();
+		let newState = {};
+		newState[e.target.name] = e.target.value;
+		this.setState(newState);
 	}
 
 	onSubmitEvent(e) {
-		console.log('here');
 		e.preventDefault();
-		login(this.state.email, this.state.password, this.response);
+		login(this.state.username, this.state.password, this.response);
 	}
 
 	response(result) {
@@ -39,7 +41,7 @@ export default class LoginPage extends Component {
 			<div>
 				<h1>Login</h1>
 				<LoginForm
-					email={this.state.email}
+					username={this.state.username}
 					password={this.state.password}
 					onSubmit={this.onSubmitEvent}
 					onChange={this.onChangeEvent}

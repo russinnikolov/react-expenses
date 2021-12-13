@@ -4,15 +4,15 @@ import './Login.css';
 export default class RegisterForm extends Component {
 	render() {
 		return(
-			<form id="login-from" className="card" onSubmit={this.props.onSubmitEvent}>
+			<form id="login-from" className="card" onSubmit={this.props.onSubmit}>
 				<div className="form-group ">
 					<input
-						type="email"
-						name="email"
+						type="text"
+						name="username"
 						className="form-control"
-						placeholder="Email"
+						placeholder="Username"
+						value={this.props.username}
 						onChange={this.props.onChange}
-
 					/>
 				</div>
 				<div className="form-group">
@@ -21,10 +21,11 @@ export default class RegisterForm extends Component {
 						name="password"
 						className="form-control"
 						placeholder="Password"
+						value={this.props.password}
 						onChange={this.props.onChange}
 					/>
 				</div>
-				<input type="button" className="btn btn-primary submit-btn" value="Register" />
+				<input type="submit" className="btn btn-primary submit-btn" value="Login" />
 			</form>
 		);
 	}

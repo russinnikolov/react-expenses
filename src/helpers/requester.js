@@ -1,15 +1,11 @@
 import $ from 'jquery';
 
-const baseUrl = 'https://baas.kinvey.com/'
+const baseUrl = 'https://baas.kinvey.com/';
 const appKey = 'kid_ryMurom5Y';
 const appSecret = '827eebacb1c54bb0b5183649e6f20fe7';
 
-
 function makeHeader(auth) {
-	let header = {
-		'Content-Type': 'application/json',
-		'Authorization': ''
-	}
+	let header = {};
 
 	switch(auth) {
 	case 'basic':
@@ -22,7 +18,9 @@ function makeHeader(auth) {
 		break;
 	}
 
+	return header;
 }
+
 function get(module, url, auth) {
 	let hostUrl = baseUrl + module + '/' + appKey + '/' + url;
 	let header = makeHeader(auth);
@@ -30,9 +28,8 @@ function get(module, url, auth) {
 	return $.ajax({
 		method: 'GET',
 		url: hostUrl,
-		header: header
+		headers: header
 	});
-
 }
 
 function post(module, url, auth, data) {
@@ -42,8 +39,8 @@ function post(module, url, auth, data) {
 	return $.ajax({
 		method: 'POST',
 		url: hostUrl,
-		header: header,
-		data: data
+		data: data,
+		headers: header
 	});
 }
 
