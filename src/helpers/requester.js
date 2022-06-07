@@ -5,7 +5,9 @@ const appKey = 'kid_ryMurom5Y';
 const appSecret = '827eebacb1c54bb0b5183649e6f20fe7';
 
 function makeHeader(auth) {
-	let header = {};
+	let header = {
+		'Content-Type': 'application/json'
+	};
 
 	switch(auth) {
 	case 'basic':
@@ -39,7 +41,7 @@ function post(module, url, auth, data) {
 	return $.ajax({
 		method: 'POST',
 		url: hostUrl,
-		data: data,
+		data: JSON.stringify(data),
 		headers: header
 	});
 }
